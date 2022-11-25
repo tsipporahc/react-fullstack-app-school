@@ -1,3 +1,4 @@
+/* Index.js is the entry point into the application which renders the main <App> component. */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

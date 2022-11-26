@@ -10,7 +10,8 @@ function Courses() {
       .then((response) => response.json())
       .then((data) => {
         setCourses(data); // return a list of courses
-      });
+      })
+      .catch((error) => console.log('Error fetching and parsing data.', error));
   }, []);
 
   return (

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useEffect, useState } from 'react';
+//import CourseDetail from './CourseDetail';
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -13,6 +14,8 @@ function Courses() {
       })
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, []);
+
+  //courses.map((course) => <CourseDetail key={course.id} />);
 
   return (
     <div className="wrap main--grid">

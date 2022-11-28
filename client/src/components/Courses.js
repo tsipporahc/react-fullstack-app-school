@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useEffect, useState } from 'react';
-//import CourseDetail from './CourseDetail';
+import CourseDetail from './CourseDetail';
 
 function Courses() {
   const [courses, setCourses] = useState([]);

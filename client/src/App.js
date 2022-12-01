@@ -14,14 +14,15 @@ import UserSignOut from './components/UserSignOut';
 import withContext from './Context';
 
 function App() {
-  /* Wraps components with Context. Consuming components are subscribed to all context changes  */
+  /* Wraps components with Context. Consuming components are subscribed to all context changes - the data and actions passed to <Context.Provider value={value}>  */
+  const HeaderWithContext = withContext(Header);
   const UserSignUpWithContext = withContext(UserSignUp);
   const UserSignInWithContext = withContext(UserSignIn);
 
   return (
     <Router>
       <header>
-        <Header />
+        <HeaderWithContext />
       </header>
       <main>
         {

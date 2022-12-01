@@ -8,10 +8,15 @@ export class Provider extends Component {
   constructor() {
     super();
     this.data = new Data();
+    this.state = {
+      authenticatedUser: null,
+    };
   }
 
   render() {
+    const { authenticatedUser } = this.state;
     const value = {
+      authenticatedUser,
       data: this.data,
       actions: { signIn: this.signIn },
     }; // provide the utility methods of the class Data as an object

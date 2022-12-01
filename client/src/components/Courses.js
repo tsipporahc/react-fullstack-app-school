@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CourseDetail from './CourseDetail';
 
 function Courses() {
@@ -28,9 +29,7 @@ function Courses() {
           <h3 className="course--title">{course.title}</h3>
         </a>
       ))}
-      <a
-        className="course--module course--add--module"
-        href="create-course.html">
+      <Link to="/courses/create" className="course--module course--add--module">
         <span className="course--add--title">
           <svg
             version="1.1"
@@ -43,7 +42,7 @@ function Courses() {
           </svg>
           New Course
         </span>
-      </a>
+      </Link>
     </div>
   );
 }

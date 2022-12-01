@@ -1,18 +1,20 @@
 /* Index.js is the entry point into the application which renders the main <App> component. */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import './styles/global.css';
-import './styles/reset.css';
+/* import { BrowserRouter } from 'react-router-dom'; */
+import './App.css';
 import App from './App';
+import { Provider } from './Context';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* <BrowserRouter> */}
+    <Provider>
       <App />
-    </BrowserRouter>
+    </Provider>
+    {/* </BrowserRouter> */}
   </React.StrictMode>
 );
 

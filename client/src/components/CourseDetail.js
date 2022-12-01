@@ -1,10 +1,11 @@
 /* This component provides the "Course Detail" screen by retrieving the detail for a course from the REST API's /api/courses/:id route and rendering the course. The component also renders a "Delete Course" button that when clicked should send a DELETE request to the REST API's /api/courses/:id route in order to delete a course. This component also renders an "Update Course" button for navigating to the "Update Course" screen. */
 
 import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 
 function CourseDetail(props) {
   const [course, setCourse] = useState([]);
-  const { id } = useParams();
+  let { id } = useParams();
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
@@ -15,19 +16,21 @@ function CourseDetail(props) {
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, [id]);
 
+  console.log(course);
+
   return (
     <main>
       <div className="actions--bar">
         <div className="wrap">
-          <a className="button" href="update-course.html">
+          <Link to="/courses/${id}/update" className="button">
             Update Course
-          </a>
-          <a className="button" href="#">
+          </Link>
+          <Link to="#" className="button">
             Delete Course
-          </a>
-          <a className="button button-secondary" href="index.html">
+          </Link>
+          <Link to="/" className="button button-secondary">
             Return to List
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -37,8 +40,8 @@ function CourseDetail(props) {
           <div className="main--flex">
             <div>
               <h3 className="course--detail--title">Course</h3>
-              <h4 className="course--name">Build a Basic Bookcase</h4>
-              <p>By Joe Smith</p>
+              <h4 className="course--name">{course.title}</h4>
+              <p>By NAME HERE </p>
 
               <p>
                 High-end furniture projects are great to dream about. But unless

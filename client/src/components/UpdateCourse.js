@@ -86,3 +86,5 @@ function UpdateCourse() {
     </main>
   );
 }
+
+export default UpdateCourse;

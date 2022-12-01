@@ -14,7 +14,9 @@ import UserSignOut from './components/UserSignOut';
 import withContext from './Context';
 
 function App() {
-  const UserSignUpWithContext = withContext(UserSignUp); // wraps 'user sign up' component with context, UserSignUp is now a consuming component that's subscribed to all context changes
+  /* Wraps components with Context. Consuming components are subscribed to all context changes  */
+  const UserSignUpWithContext = withContext(UserSignUp);
+  const UserSignInWithContext = withContext(UserSignIn);
 
   return (
     <Router>
@@ -29,9 +31,10 @@ function App() {
 
             <Route path="/courses/:id" element={<CourseDetail />} />
             <Route path="/courses/:id/update" element={<UpdateCourse />} />
-            <Route path="/signin" element={<UserSignIn />} />
+            <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOut />} />
+            {/* <Route element={NotFound} /> */}
           </Routes>
         }
       </main>

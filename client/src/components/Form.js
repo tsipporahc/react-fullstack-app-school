@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (props) => {
+const Form = (props) => {
   const { cancel, errors, submit, submitButtonText, elements } = props;
 
   function handleSubmit(event) {
@@ -37,7 +37,7 @@ function ErrorsDisplay({ errors }) {
   if (errors.length) {
     errorsDisplay = (
       <div>
-        <h2 className="validation--errors--label">Validation errors</h2>
+        <h3 className="validation--errors--label">Validation errors</h3>
         <div className="validation-errors">
           <ul>
             {errors.map((error, i) => (
@@ -51,3 +51,5 @@ function ErrorsDisplay({ errors }) {
 
   return errorsDisplay;
 }
+
+export default Form;

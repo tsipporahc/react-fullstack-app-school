@@ -13,12 +13,14 @@ export class Provider extends Component {
   render() {
     const value = {
       data: this.data,
+      actions: { signIn: this.signIn },
     }; // provide the utility methods of the class Data as an object
     return (
       <Context.Provider value={value}>{this.props.children}</Context.Provider>
     );
   }
 
+  /* Gets a registered user's credentials from the server upon sign in */
   signIn = async (emailAddress, password) => {
     const user = await this.data.getUser(emailAddress, password);
     if (user !== null) {
@@ -27,11 +29,12 @@ export class Provider extends Component {
           authenticatedUser: user,
         };
       });
-      const cookieOptions = {
+      /* const cookieOptions = {
         expires: 1, // 1 day
       };
-      Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);
-    }
+      Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions); */
+    } // maintains the user's authenticated state across multiple requests and page refreshes.
+
     return user;
   };
 

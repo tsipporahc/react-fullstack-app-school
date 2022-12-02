@@ -13,7 +13,7 @@ function UserSignUp(props) {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const submit = (props) => {
+  const submit = () => {
     console.log(context);
 
     // Create user

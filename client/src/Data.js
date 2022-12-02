@@ -29,7 +29,7 @@ export default class Data {
 
   /* Logs in authenticated user */
   async getUser(emailAddress, password) {
-    const response = await this.api(`/users`, 'GET', null, true, {
+    const response = await this.api('/users', 'GET', null, true, {
       emailAddress,
       password,
     });
@@ -44,6 +44,56 @@ export default class Data {
 
   async createUser(user) {
     const response = await this.api('/users', 'POST', user);
+    if (response.status === 201) {
+      return [];
+    } else if (response.status === 400) {
+      return response.json().then((data) => {
+        return data.errors;
+      });
+    } else {
+      throw new Error();
+    }
+  }
+
+  async getCourses() {
+    const response = await this.api('/courses', 'GET');
+    if (response.status === 200) {
+      //return response.json().then((data) => data);
+      return response.json().then((data) => console.log(data));
+    } else if (response.status === 400) {
+      return response.json().then((data) => {
+        return data.errors;
+      });
+    } else {
+      throw new Error();
+    }
+  }
+
+  async getCourseDetail(id) {
+    const response = await this.api(`/courses/${id}`, 'GET');
+    console.log(id);
+    if (response.status === 200) {
+      //return response.json().then((data) => data);
+      return response.json().then((data) => console.log(data));
+    } else if (response.status === 400) {
+      return response.json().then((data) => {
+        return data.errors;
+      });
+    } else {
+      throw new Error();
+    }
+  }
+
+  /* This is an authenticated route for create course */
+  async createCourse(emailAddress, password, course) {
+    const response = await this.api('/courses', 'POST', course, true, {
+      emailAddress,
+      password,
+      course,
+    });
+    console.log(course);
+    console.log(emailAddress);
+    console.log(password);
     if (response.status === 201) {
       return [];
     } else if (response.status === 400) {

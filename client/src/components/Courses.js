@@ -3,7 +3,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CourseDetail from './CourseDetail';
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -16,18 +15,16 @@ function Courses() {
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, []);
 
-  //courses.map((course) => <CourseDetail key={course.id} />);
-
   return (
     <div className="wrap main--grid">
       {courses.map((course) => (
-        <a
+        <Link
+          to={`/courses/${course.id}`}
           className="course--module course--link"
-          href="course-detail.html"
           key={course.id}>
           <h2 className="course--label">Course</h2>
           <h3 className="course--title">{course.title}</h3>
-        </a>
+        </Link>
       ))}
       <Link to="/courses/create" className="course--module course--add--module">
         <span className="course--add--title">

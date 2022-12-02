@@ -12,6 +12,11 @@ export class Provider extends Component {
     this.state = {
       authenticatedUser: null,
     };
+    this.cookie = Cookies.get('authenticatedUser');
+
+    this.state = {
+      authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null,
+    };
   }
 
   render() {
@@ -49,6 +54,7 @@ export class Provider extends Component {
 
   signOut = () => {
     this.setState({ authenticatedUser: null });
+    Cookies.remove('authenticatedUser');
   };
 }
 

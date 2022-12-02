@@ -36,15 +36,14 @@ function ErrorsDisplay({ errors }) {
 
   if (errors.length) {
     errorsDisplay = (
-      <div>
-        <h3 className="validation--errors--label">Validation errors</h3>
-        <div className="validation-errors">
-          <ul>
-            {errors.map((error, i) => (
-              <li key={i}>{error}</li>
-            ))}
-          </ul>
-        </div>
+      <div className="validation--errors">
+        <h3>Validation errors</h3>
+
+        <ul>
+          {errors.map((error, i) => (
+            <li key={i}>{error}</li>
+          ))}
+        </ul>
       </div>
     );
   }

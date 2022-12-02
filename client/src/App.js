@@ -11,7 +11,9 @@ import Header from './components/Header';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
+
 import withContext from './Context';
+import PrivateRoutes from './PrivateRoutes';
 
 function App() {
   /* Wraps components with Context. Consuming components are subscribed to all context changes - the data and actions passed to <Context.Provider value={value}>  */
@@ -27,6 +29,11 @@ function App() {
       <main>
         {
           <Routes>
+            <Route element={<PrivateRoutes />}>
+              <Route path="/courses/create" element={<CreateCourse />} />
+              <Route path="/courses/:id/update" element={<UpdateCourse />} />
+            </Route>
+
             <Route path="/" element={<Courses />} />
             <Route path="/courses/create" element={<CreateCourse />} />
 
@@ -35,6 +42,12 @@ function App() {
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOut />} />
+            {/* <PrivateRoute path="/courses/create" component={<CreateCourse />} />
+            <PrivateRoute
+              path="/courses/:id/update"
+              component={<UpdateCourse />}
+            /> */}
+
             {/* <Route element={NotFound} /> */}
           </Routes>
         }

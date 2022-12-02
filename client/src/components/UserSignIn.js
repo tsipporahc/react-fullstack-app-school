@@ -11,7 +11,7 @@ function UserSignIn(props) {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const submit = (props) => {
+  const submit = () => {
     console.log(context);
 
     context.actions

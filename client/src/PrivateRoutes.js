@@ -27,7 +27,15 @@ const PrivateRoutes = ({ component: Component, ...rest }) => {
   return (
     <Consumer>
       {(context) =>
-        context.authenticatedUser ? <Outlet /> : <Navigate to="/signin" />
+        context.authenticatedUser ? (
+          <Outlet />
+        ) : (
+          <Navigate
+            to={{
+              pathname: '/signin',
+            }}
+          />
+        )
       }
     </Consumer>
   );

@@ -32,15 +32,9 @@ function UserSignUp(props) {
           setErrors(errors);
           console.log(errors);
         } else {
-          console.log(
-            `${user.emailAddress} is successfully signed up and authenticated!`
-          );
-          navigate('/');
-          /* context.actions
-            .signIn(firstName, lastName, emailAddress, password)
-            .then(() => {
-              navigate('/');
-            }); */
+          context.actions.signIn(emailAddress, password).then(() => {
+            navigate('/');
+          });
         }
       })
       .catch((err) => {

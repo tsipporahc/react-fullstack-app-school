@@ -5,6 +5,9 @@ import { useParams, Link } from 'react-router-dom';
 
 function CourseDetail({ context }) {
   const authUser = context.authenticatedUser;
+  console.log(authUser.id);
+  console.log(course.userId);
+
   const [course, setCourse] = useState([]);
   let { id } = useParams();
   console.log(id);

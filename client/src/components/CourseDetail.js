@@ -5,8 +5,8 @@ import { useParams, Link } from 'react-router-dom';
 
 function CourseDetail({ context }) {
   const authUser = context.authenticatedUser;
+  console.log(authUser);
   console.log(authUser.id);
-  console.log(course.userId);
 
   const [course, setCourse] = useState([]);
   let { id } = useParams();
@@ -34,6 +34,7 @@ function CourseDetail({ context }) {
   }, [id]); */
 
   console.log(course);
+  console.log(course.userId);
   //console.log(course.User);
   //console.log(course.User.firstName);
   //console.log(course.materialsNeeded);

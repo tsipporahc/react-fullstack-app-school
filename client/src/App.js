@@ -20,6 +20,7 @@ function App() {
   const HeaderWithContext = withContext(Header);
   const UserSignUpWithContext = withContext(UserSignUp);
   const UserSignInWithContext = withContext(UserSignIn);
+  const UserSignOutWithContext = withContext(UserSignOut);
 
   return (
     <Router>
@@ -41,7 +42,7 @@ function App() {
             <Route path="/courses/:id/update" element={<UpdateCourse />} />
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
-            <Route path="/signout" element={<UserSignOut />} />
+            <Route path="/signout" element={<UserSignOutWithContext />} />
             {/* <PrivateRoute path="/courses/create" component={<CreateCourse />} />
             <PrivateRoute
               path="/courses/:id/update"

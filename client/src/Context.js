@@ -18,7 +18,7 @@ export class Provider extends Component {
     const value = {
       authenticatedUser,
       data: this.data,
-      actions: { signIn: this.signIn },
+      actions: { signIn: this.signIn, signOut: this.signOut },
     }; // provide the utility methods of the class Data as an object
     return (
       <Context.Provider value={value}>{this.props.children}</Context.Provider>
@@ -43,7 +43,9 @@ export class Provider extends Component {
     return user;
   };
 
-  signOut = () => {};
+  signOut = () => {
+    this.setState({ authenticatedUser: null });
+  };
 }
 
 export const Consumer = Context.Consumer;

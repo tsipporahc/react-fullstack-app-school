@@ -1,21 +1,16 @@
 /* This component provides the "Course Detail" screen by retrieving the detail for a course from the REST API's /api/courses/:id route and rendering the course. The component also renders a "Delete Course" button that when clicked should send a DELETE request to the REST API's /api/courses/:id route in order to delete a course. This component also renders an "Update Course" button for navigating to the "Update Course" screen. */
 
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 function CourseDetail({ context }) {
   const authUser = context.authenticatedUser;
-  console.log(authUser);
-  console.log(authUser.id);
-
+  const navigate = useNavigate();
   const [course, setCourse] = useState([]);
   let { id } = useParams();
   console.log(id);
 
   useEffect(() => {
-    console.log(context);
-    console.log(context.data);
-
     context.data
       .getCourseDetail(id)
       .then((data) => {
@@ -24,20 +19,20 @@ function CourseDetail({ context }) {
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, [id, context]);
 
-  /*  useEffect(() => {
-    fetch(`http://localhost:5000/api/courses/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCourse(data); // return details of a course
-      })
-      .catch((error) => console.log('Error fetching and parsing data.', error));
-  }, [id]); */
-
-  console.log(course);
-  console.log(course.userId);
-  //console.log(course.User);
-  //console.log(course.User.firstName);
-  //console.log(course.materialsNeeded);
+  function handleDelete(event) {
+    event.preventDefault();
+    context.data
+      .deleteCourse(
+        id,
+        context.authenticatedUser.emailAddress,
+        context.authenticatedUser.password,
+        course
+      )
+      .then(navigate('/'))
+      .catch((err) => {
+        console.log(err, 'Error deleting course');
+      });
+  }
 
   return (
     <main>
@@ -45,11 +40,15 @@ function CourseDetail({ context }) {
         <div className="wrap">
           {authUser && authUser.id === course.userId ? (
             <>
-              <Link to="/courses/${id}/update" className="button">
+              <Link to="update" className="button">
                 Update Course
               </Link>
-              <Link to="#" className="button">
+              <Link to="/" className="button" onClick={handleDelete}>
                 Delete Course
+              </Link>
+
+              <Link to="/" className="button button-secondary">
+                Return to List
               </Link>
             </>
           ) : (

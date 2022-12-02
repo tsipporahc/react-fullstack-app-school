@@ -1,6 +1,7 @@
 /* Context.js - A higher-order component (HOC) that shares functionality across the components of the app. This will let you reuse component logic and state. Remember - "Context" is used in React when data needs to be accessible by many components at different nesting levels. */
 import React, { Component } from 'react';
 import Data from './Data';
+import Cookies from 'js-cookie';
 
 const Context = React.createContext();
 
@@ -28,17 +29,20 @@ export class Provider extends Component {
   /* Gets a registered user's credentials from the server upon sign in */
   signIn = async (emailAddress, password) => {
     const user = await this.data.getUser(emailAddress, password);
+    // maintains the user's authenticated state across multiple requests and page refreshes.
     if (user !== null) {
       this.setState(() => {
         return {
           authenticatedUser: user,
         };
       });
-      /* const cookieOptions = {
+
+      // Set cookie
+      const cookieOptions = {
         expires: 1, // 1 day
       };
-      Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions); */
-    } // maintains the user's authenticated state across multiple requests and page refreshes.
+      Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);
+    }
 
     return user;
   };

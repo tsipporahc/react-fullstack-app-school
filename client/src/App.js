@@ -23,6 +23,7 @@ function App() {
   const UserSignOutWithContext = withContext(UserSignOut);
   const CourseDetailWithContext = withContext(CourseDetail);
   const CreateCourseWithContext = withContext(CreateCourse);
+  const UpdateCourseWithContext = withContext(UpdateCourse);
 
   return (
     <Router>
@@ -37,7 +38,10 @@ function App() {
                 path="/courses/create"
                 element={<CreateCourseWithContext />}
               />
-              <Route path="/courses/:id/update" element={<UpdateCourse />} />
+              <Route
+                path="/courses/:id/update"
+                element={<UpdateCourseWithContext />}
+              />
             </Route>
 
             <Route path="/" element={<Courses />} />

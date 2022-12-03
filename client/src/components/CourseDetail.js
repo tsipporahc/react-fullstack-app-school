@@ -7,6 +7,8 @@ function CourseDetail({ context }) {
   const authUser = context.authenticatedUser;
   const navigate = useNavigate();
   const [course, setCourse] = useState([]);
+  const [firstName, setfirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   let { id } = useParams();
   console.log(id);
 
@@ -15,6 +17,8 @@ function CourseDetail({ context }) {
       .getCourseDetail(id)
       .then((data) => {
         setCourse(data); // return details of a course
+        setfirstName(data.User.firstName);
+        setLastName(data.User.lastName);
       })
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, [id, context]);
@@ -68,7 +72,9 @@ function CourseDetail({ context }) {
             <div>
               <h3 className="course--detail--title">Course</h3>
               <h4 className="course--name">{course.title}</h4>
-              <p></p>
+              <p>
+                By {firstName} {lastName}
+              </p>
 
               <p>{course.description}</p>
             </div>

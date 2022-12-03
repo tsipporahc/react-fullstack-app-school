@@ -58,8 +58,7 @@ export default class Data {
   async getCourses() {
     const response = await this.api('/courses', 'GET');
     if (response.status === 200) {
-      //return response.json().then((data) => data);
-      return response.json().then((data) => console.log(data));
+      return response.json();
     } else if (response.status === 400) {
       return response.json().then((data) => {
         return data.errors;
@@ -74,7 +73,6 @@ export default class Data {
     console.log(id);
     if (response.status === 200) {
       return response.json();
-      //return response.json().then((data) => console.log(data));
     } else if (response.status === 400) {
       return response.json().then((data) => {
         return data.errors;
@@ -108,6 +106,27 @@ export default class Data {
   /* This is an authenticated route for delete course */
   async deleteCourse(id, emailAddress, password, course) {
     const response = await this.api(`/courses/${id}`, 'DELETE', course, true, {
+      emailAddress,
+      password,
+      course,
+    });
+    console.log(course);
+    console.log(emailAddress);
+    console.log(password);
+    if (response.status === 204) {
+      return [];
+    } else if (response.status === 400) {
+      return response.json().then((data) => {
+        return data.errors;
+      });
+    } else {
+      throw new Error();
+    }
+  }
+
+  /* This is an authenticated route for update course */
+  async updateCourse(id, emailAddress, password, course) {
+    const response = await this.api(`/courses/${id}`, 'PUT', course, true, {
       emailAddress,
       password,
       course,

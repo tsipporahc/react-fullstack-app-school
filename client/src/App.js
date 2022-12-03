@@ -21,6 +21,7 @@ function App() {
   const UserSignUpWithContext = withContext(UserSignUp);
   const UserSignInWithContext = withContext(UserSignIn);
   const UserSignOutWithContext = withContext(UserSignOut);
+  const CoursesWithContext = withContext(Courses);
   const CourseDetailWithContext = withContext(CourseDetail);
   const CreateCourseWithContext = withContext(CreateCourse);
   const UpdateCourseWithContext = withContext(UpdateCourse);
@@ -44,11 +45,17 @@ function App() {
               />
             </Route>
 
-            <Route path="/" element={<Courses />} />
-            <Route path="/courses/create" element={<CreateCourse />} />
+            <Route path="/" element={<CoursesWithContext />} />
+            <Route
+              path="/courses/create"
+              element={<CreateCourseWithContext />}
+            />
 
             <Route path="/courses/:id" element={<CourseDetailWithContext />} />
-            <Route path="/courses/:id/update" element={<UpdateCourse />} />
+            <Route
+              path="/courses/:id/update"
+              element={<UpdateCourseWithContext />}
+            />
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />} />

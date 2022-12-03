@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 function CourseDetail({ context }) {
   const authUser = context.authenticatedUser;
@@ -10,7 +11,6 @@ function CourseDetail({ context }) {
   const [firstName, setfirstName] = useState('');
   const [lastName, setLastName] = useState('');
   let { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     context.data
@@ -76,14 +76,16 @@ function CourseDetail({ context }) {
                 By {firstName} {lastName}
               </p>
 
-              <p>{course.description}</p>
+              <ReactMarkdown children={course.description} />
             </div>
             <div>
               <h3 className="course--detail--title">Estimated Time</h3>
               <p>{course.estimatedTime}</p>
 
               <h3 className="course--detail--title">Materials Needed</h3>
-              <ul className="course--detail--list">{course.materialsNeeded}</ul>
+              <ul className="course--detail--list">
+                <ReactMarkdown children={course.materialsNeeded} />
+              </ul>
             </div>
           </div>
         </form>

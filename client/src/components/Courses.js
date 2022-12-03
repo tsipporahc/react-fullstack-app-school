@@ -4,16 +4,15 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Courses() {
+function Courses({ context }) {
   const [courses, setCourses] = useState([]);
+
   useEffect(() => {
-    fetch('http://localhost:5000/api/courses')
-      .then((response) => response.json())
-      .then((data) => {
-        setCourses(data); // return a list of courses
-      })
+    context.data
+      .getCourses()
+      .then((data) => setCourses(data))
       .catch((error) => console.log('Error fetching and parsing data.', error));
-  }, []);
+  }, [context.data]);
 
   return (
     <div className="wrap main--grid">

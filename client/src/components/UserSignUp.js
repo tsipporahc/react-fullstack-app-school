@@ -14,8 +14,6 @@ function UserSignUp(props) {
   const [errors, setErrors] = useState([]);
 
   const submit = () => {
-    //console.log(context);
-
     // Create user
     const user = {
       firstName,
@@ -30,7 +28,6 @@ function UserSignUp(props) {
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
-          console.log(errors);
         } else {
           context.actions.signIn(emailAddress, password).then(() => {
             navigate('/');

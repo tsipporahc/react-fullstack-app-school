@@ -44,18 +44,8 @@ function App() {
                 element={<UpdateCourseWithContext />}
               />
             </Route>
-
             <Route path="/" element={<CoursesWithContext />} />
-            <Route
-              path="/courses/create"
-              element={<CreateCourseWithContext />}
-            />
-
             <Route path="/courses/:id" element={<CourseDetailWithContext />} />
-            <Route
-              path="/courses/:id/update"
-              element={<UpdateCourseWithContext />}
-            />
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />} />

@@ -9,7 +9,6 @@ function UpdateCourse({ context }) {
   const authUser = context.authenticatedUser;
   const userId = authUser.id;
   const navigate = useNavigate();
-  const [course, setCourse] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
@@ -17,13 +16,10 @@ function UpdateCourse({ context }) {
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
 
-  //console.log(authUser); // return authorized user info
-
   useEffect(() => {
     context.data
       .getCourseDetail(id)
       .then((data) => {
-        setCourse(data);
         setTitle(data.title);
         setDescription(data.description);
         setEstimatedTime(data.estimatedTime);

@@ -14,7 +14,7 @@ function CreateCourse({ context }) {
   const [materialsNeeded, setMaterialsNeeded] = useState('');
   const [errors, setErrors] = useState([]);
 
-  console.log(authUser);
+  //console.log(authUser);
 
   const submit = () => {
     //console.log(context);

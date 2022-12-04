@@ -5,7 +5,7 @@ Treehouse Techdegree Unit 10 Project
 Fullstack App using REST API, React, Express, Node.js, and Sequelize
 
 **Purpose:**
-This fullstack React application will provide a way for users to administer a school database containing information about courses: users can interact with the database by retrieving a list of courses, viewing detail for a specific course, as well as creating, updating and deleting courses in the database. Users are required to create an account and sign in to make changes to the database.
+This fullstack React application provides a way for users to administer a school database containing information about courses: users can interact with the database by retrieving a list of courses, viewing detail for a specific course, as well as creating, updating and deleting courses in the database. Users are required to create an account and sign in to make changes to the database. This application demonstrates the use of advanced React concepts including, higher order components, Context API, and hooks.
 
 **Challenges:**
 My challenges included the user authorization and working with React Contet API on the front end.

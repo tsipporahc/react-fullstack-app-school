@@ -16,7 +16,7 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
-    // encode the username and password credentials passed to the api() method andadds authorization header which holds the credentials to authenticate the client with the server.
+    /* User Authorization - encode the username and password credentials passed to the api() method andadds authorization header which holds the credentials to authenticate the client with the server. */
     if (requiresAuth) {
       const encodedCredentials = btoa(
         `${credentials.emailAddress}:${credentials.password}`
@@ -42,6 +42,7 @@ export default class Data {
     }
   }
 
+  /* Creates a User */
   async createUser(user) {
     const response = await this.api('/users', 'POST', user);
     if (response.status === 201) {
@@ -55,6 +56,7 @@ export default class Data {
     }
   }
 
+  /* Retrieves a list of courses */
   async getCourses() {
     const response = await this.api('/courses', 'GET');
     if (response.status === 200) {
@@ -68,6 +70,7 @@ export default class Data {
     }
   }
 
+  /* Retrieves detailed information about a course */
   async getCourseDetail(id) {
     const response = await this.api(`/courses/${id}`, 'GET');
 

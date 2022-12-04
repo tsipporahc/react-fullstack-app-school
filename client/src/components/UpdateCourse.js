@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Form from './Form';
 
 function UpdateCourse({ context }) {
-  console.log(context);
+  //console.log(context);
   const authUser = context.authenticatedUser;
   const userId = authUser.id;
   const navigate = useNavigate();
@@ -17,27 +17,22 @@ function UpdateCourse({ context }) {
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
 
-  console.log(authUser);
+  //console.log(authUser); // return authorized user info
 
   useEffect(() => {
     context.data
       .getCourseDetail(id)
       .then((data) => {
-        setCourse(data); // return all of course
+        setCourse(data);
         setTitle(data.title);
         setDescription(data.description);
-        setEstimatedTime(data.time);
+        setEstimatedTime(data.estimatedTime);
         setMaterialsNeeded(data.materialsNeeded);
       })
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, [id, context]);
 
-  console.log(course);
-
-  function handleUpdate(event) {
-    console.log(context);
-    //event.preventDefault();
-
+  function handleUpdate() {
     // Create course
     const course = {
       title,
@@ -58,7 +53,6 @@ function UpdateCourse({ context }) {
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
-          console.log(errors);
         } else {
           navigate('/');
         }
@@ -71,8 +65,6 @@ function UpdateCourse({ context }) {
   const cancel = () => {
     navigate('/');
   };
-
-  console.log(title);
 
   return (
     <main>
@@ -127,14 +119,6 @@ function UpdateCourse({ context }) {
                     }></textarea>
                 </div>
               </div>
-              {/* <button className="button" type="submit">
-                Create Course
-              </button>
-              <button
-                className="button button-secondary"
-                onclick="event.preventDefault(); location.href='index.html';">
-                Cancel
-              </button> */}
             </React.Fragment>
           )}
         />

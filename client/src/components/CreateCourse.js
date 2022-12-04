@@ -17,7 +17,7 @@ function CreateCourse({ context }) {
   console.log(authUser);
 
   const submit = () => {
-    console.log(context);
+    //console.log(context);
 
     // Create course
     const course = {
@@ -51,8 +51,6 @@ function CreateCourse({ context }) {
   const cancel = () => {
     navigate('/');
   };
-
-  console.log(title);
 
   return (
     <main>
@@ -107,14 +105,6 @@ function CreateCourse({ context }) {
                     }></textarea>
                 </div>
               </div>
-              {/* <button className="button" type="submit">
-                Create Course
-              </button>
-              <button
-                className="button button-secondary"
-                onclick="event.preventDefault(); location.href='index.html';">
-                Cancel
-              </button> */}
             </React.Fragment>
           )}
         />

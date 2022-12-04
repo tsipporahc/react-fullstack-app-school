@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// App Components
+/* App Components */
 import Courses from './components/Courses';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
@@ -59,13 +59,6 @@ function App() {
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />} />
-            {/* <PrivateRoute path="/courses/create" component={<CreateCourse />} />
-            <PrivateRoute
-              path="/courses/:id/update"
-              component={<UpdateCourse />}
-            /> */}
-
-            {/* <Route element={NotFound} /> */}
           </Routes>
         }
       </main>

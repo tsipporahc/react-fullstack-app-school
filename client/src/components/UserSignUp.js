@@ -14,7 +14,7 @@ function UserSignUp(props) {
   const [errors, setErrors] = useState([]);
 
   const submit = () => {
-    console.log(context);
+    //console.log(context);
 
     // Create user
     const user = {
@@ -39,9 +39,7 @@ function UserSignUp(props) {
       })
       .catch((err) => {
         console.log(err, 'Error processing sign up');
-        {
-          /* navigate("/error") */
-        }
+        // navigate('/error'); // EXCEEDS: Navigates to error page
       });
   };
 

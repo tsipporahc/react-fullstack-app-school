@@ -12,6 +12,8 @@ function CourseDetail({ context }) {
   const [lastName, setLastName] = useState('');
   let { id } = useParams();
 
+  //console.log(course);
+
   useEffect(() => {
     context.data
       .getCourseDetail(id)

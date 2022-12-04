@@ -12,7 +12,7 @@ function UserSignIn(props) {
   const [errors, setErrors] = useState([]);
 
   const submit = () => {
-    console.log(context);
+    //console.log(context);
 
     context.actions
       .signIn(emailAddress, password)
@@ -21,9 +21,8 @@ function UserSignIn(props) {
           setErrors(() => {
             return ['Sign-in was unsuccessful'];
           });
-          console.log(errors);
         } else {
-          console.log(`${emailAddress} is successfully signed in!`);
+          //console.log(`${emailAddress} is successfully signed in!`);
           navigate('/');
         }
       })
@@ -68,8 +67,8 @@ function UserSignIn(props) {
         )}
       />
       <p>
-        Already have a user account? <Link to="/signin">Click here</Link> to
-        sign in!
+        Don't have a user account? <Link to="/signup">Click here</Link> to sign
+        up!
       </p>
     </div>
   );

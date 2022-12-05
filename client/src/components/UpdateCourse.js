@@ -16,18 +16,24 @@ function UpdateCourse({ context }) {
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
 
+  /**
+   * Fetches detailed course information from REST API via context
+   */
   useEffect(() => {
     context.data
       .getCourseDetail(id)
       .then((data) => {
-        setTitle(data.title);
-        setDescription(data.description);
-        setEstimatedTime(data.estimatedTime);
-        setMaterialsNeeded(data.materialsNeeded);
+        setTitle(data.title); // sets the value of title to be rendered in pre-filled form
+        setDescription(data.description); // sets the value of description to be rendered in pre-filled form
+        setEstimatedTime(data.estimatedTime); // sets the value of estimatedTime to be rendered in pre-filled form
+        setMaterialsNeeded(data.materialsNeeded); // sets the value of materialsNeeded to be rendered in pre-filled form
       })
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, [id, context]);
 
+  /**
+   * Updates course information via context
+   */
   function handleUpdate() {
     // Create course
     const course = {

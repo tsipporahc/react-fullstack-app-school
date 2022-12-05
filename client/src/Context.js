@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 const Context = React.createContext();
 
 export class Provider extends Component {
+  /* Initializes the state values */
   constructor() {
     super();
     this.data = new Data();
@@ -19,6 +20,7 @@ export class Provider extends Component {
     };
   }
 
+  /* Provider passes down these states to the consumer */
   render() {
     const { authenticatedUser } = this.state;
     const value = {
@@ -44,7 +46,7 @@ export class Provider extends Component {
 
       // Set cookie
       const cookieOptions = {
-        expires: 1, // 1 day
+        expires: 1, // lasts for 1 day
       };
       Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);
     }
@@ -52,6 +54,7 @@ export class Provider extends Component {
     return user;
   };
 
+  /* Signs out authenticated user and removes cookie */
   signOut = () => {
     this.setState({ authenticatedUser: null });
     Cookies.remove('authenticatedUser');

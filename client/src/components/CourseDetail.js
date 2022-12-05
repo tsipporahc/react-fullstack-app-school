@@ -12,19 +12,27 @@ function CourseDetail({ context }) {
   const [lastName, setLastName] = useState('');
   let { id } = useParams();
 
-  //console.log(course);
-
+  /**
+   * Fetches detailed course information from REST API via context.
+   *
+   * The current course id is passed in to getCourseDetail() http request which is handled via context. The course, firstName and lastName are values set from the data returned in the response.
+   */
   useEffect(() => {
     context.data
       .getCourseDetail(id)
       .then((data) => {
-        setCourse(data); // return details of a course
-        setfirstName(data.User.firstName);
-        setLastName(data.User.lastName);
+        setCourse(data); // sets value of a course and returns an object
+        setfirstName(data.User.firstName); // sets the value of firstName to be rendered in form
+        setLastName(data.User.lastName); // sets the value of lastName to be rendered in form
       })
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, [id, context]);
 
+  /**
+   * Deletes a course via context
+   * The current course id, authenticated user email address and password are passed in to deleteCourse() http request which is handled via context. If the request is successful, the user will be navigated to the index route.
+   * @param {object} event - Event object
+   */
   function handleDelete(event) {
     event.preventDefault();
     context.data

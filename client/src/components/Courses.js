@@ -7,10 +7,15 @@ import { Link } from 'react-router-dom';
 function Courses({ context }) {
   const [courses, setCourses] = useState([]);
 
+  /**
+   * Fetches detailed course information from REST API via context
+   *
+   * The getCourses() function is an http request which is handled via context. From the data returned in the response, it sets the value of courses.
+   */
   useEffect(() => {
     context.data
       .getCourses()
-      .then((data) => setCourses(data))
+      .then((data) => setCourses(data)) // sets value of courses and returns an aray of objects
       .catch((error) => console.log('Error fetching and parsing data.', error));
   }, [context.data]);
 

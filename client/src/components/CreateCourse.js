@@ -14,11 +14,13 @@ function CreateCourse({ context }) {
   const [materialsNeeded, setMaterialsNeeded] = useState('');
   const [errors, setErrors] = useState([]);
 
-  //console.log(authUser);
-
+  /**
+   * When user submits the form, a new course is created via context
+   *
+   * A new course object is assigned. The new course, authenticated user email address and password are passed in to createCourse() http request which is handled via context. If the request is successful and there are no validation errors, the user will be navigated to the index route.
+   *
+   */
   const submit = () => {
-    //console.log(context);
-
     // Create course
     const course = {
       title,
@@ -48,6 +50,9 @@ function CreateCourse({ context }) {
       });
   };
 
+  /**
+   * When user presses the cancel button, the user is navigated to the index route.
+   */
   const cancel = () => {
     navigate('/');
   };

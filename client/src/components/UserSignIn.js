@@ -11,9 +11,13 @@ function UserSignIn(props) {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
+  /**
+   * When user submits the form, a user is able to be authenticated via context
+   *
+   * The user's email address and password are passed in to the signIn() function which is an action handled via context. If the request is successful and there are no validation errors, the user will be navigated to the index route.
+   *
+   */
   const submit = () => {
-    //console.log(context);
-
     context.actions
       .signIn(emailAddress, password)
       .then((user) => {
@@ -22,7 +26,6 @@ function UserSignIn(props) {
             return ['Sign-in was unsuccessful'];
           });
         } else {
-          //console.log(`${emailAddress} is successfully signed in!`);
           navigate('/');
         }
       })
@@ -31,6 +34,9 @@ function UserSignIn(props) {
       });
   };
 
+  /**
+   * When user presses the cancel button, the user is navigated to the index route.
+   */
   const cancel = () => {
     navigate('/');
   };

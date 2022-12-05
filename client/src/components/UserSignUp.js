@@ -13,6 +13,12 @@ function UserSignUp(props) {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
+  /**
+   * When user submits the form, a new user is created via context
+   *
+   * A new user object is assigned to the variable user. The user's email address and password are passed in to the signIn() function which is an action handled via context, allowing users to be automatically signed in to their account once it is created. If the request is successful and there are no validation errors, the user will be navigated to the index route.
+   *
+   */
   const submit = () => {
     // Create user
     const user = {

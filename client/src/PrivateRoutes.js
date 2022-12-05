@@ -20,6 +20,4 @@ const PrivateRoutes = ({ component: Component, ...rest }) => {
   );
 };
 
-// state={{ from: location.pathname }}
-
 export default PrivateRoutes;

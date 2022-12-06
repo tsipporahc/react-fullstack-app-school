@@ -42,7 +42,7 @@ function UserSignUp(props) {
       })
       .catch((err) => {
         console.log(err, 'Error processing sign up');
-        // navigate('/error'); // EXCEEDS: Navigates to error page
+        navigate('/error'); // returns 500 internal server error http status code
       });
   };
 

@@ -11,6 +11,9 @@ import Header from './components/Header';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
+import NotFound from './components/NotFound';
+import Forbidden from './components/Forbidden';
+import UnhandledError from './components/UnhandledError';
 
 import withContext from './Context';
 import PrivateRoutes from './PrivateRoutes';
@@ -49,6 +52,10 @@ function App() {
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />} />
+            <Route path="/forbidden" element={<Forbidden />} />
+            <Route path="/error" element={<UnhandledError />} />
+            <Route path="/notfound" element={<NotFound />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         }
       </main>

@@ -9,6 +9,7 @@ function UpdateCourse({ context }) {
   const authUser = context.authenticatedUser;
   const userId = authUser.id;
   const navigate = useNavigate();
+  const [course, setCourse] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
@@ -23,13 +24,17 @@ function UpdateCourse({ context }) {
     context.data
       .getCourseDetail(id)
       .then((data) => {
+        setCourse(data); // sets value of the course
         setTitle(data.title); // sets the value of title to be rendered in pre-filled form
         setDescription(data.description); // sets the value of description to be rendered in pre-filled form
         setEstimatedTime(data.estimatedTime); // sets the value of estimatedTime to be rendered in pre-filled form
         setMaterialsNeeded(data.materialsNeeded); // sets the value of materialsNeeded to be rendered in pre-filled form
       })
-      .catch((error) => console.log('Error fetching and parsing data.', error));
-  }, [id, context]);
+      .catch((error) => {
+        console.log('Error fetching and parsing data.', error);
+        navigate('/notfound');
+      });
+  }, [id, context, navigate]);
 
   /**
    * Updates course information via context
@@ -61,6 +66,7 @@ function UpdateCourse({ context }) {
       })
       .catch((err) => {
         console.log(err, 'Error updating course');
+        navigate('/error'); // returns 500 internal server error http status code
       });
   }
 
@@ -70,61 +76,69 @@ function UpdateCourse({ context }) {
 
   return (
     <main>
-      <div className="wrap">
-        <h2>Create Course</h2>
-        <Form
-          cancel={cancel}
-          errors={errors}
-          submit={handleUpdate}
-          submitButtonText="Update Course"
-          elements={() => (
-            <React.Fragment>
-              <div className="main--flex">
-                <div>
-                  <label htmlFor="courseTitle">Course Title</label>
-                  <input
-                    id="courseTitle"
-                    name="courseTitle"
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
+      {authUser && authUser.id === course.userId ? (
+        <div className="wrap">
+          <h2>Create Course</h2>
+          <Form
+            cancel={cancel}
+            errors={errors}
+            submit={handleUpdate}
+            submitButtonText="Update Course"
+            elements={() => (
+              <React.Fragment>
+                <div className="main--flex">
+                  <div>
+                    <label htmlFor="courseTitle">Course Title</label>
+                    <input
+                      id="courseTitle"
+                      name="courseTitle"
+                      type="text"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
 
-                  <p>
-                    By {authUser.firstName} {authUser.lastName}
-                  </p>
+                    <p>
+                      By {authUser.firstName} {authUser.lastName}
+                    </p>
 
-                  <label htmlFor="courseDescription">Course Description</label>
-                  <textarea
-                    id="courseDescription"
-                    name="courseDescription"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}></textarea>
+                    <label htmlFor="courseDescription">
+                      Course Description
+                    </label>
+                    <textarea
+                      id="courseDescription"
+                      name="courseDescription"
+                      value={description}
+                      onChange={(e) =>
+                        setDescription(e.target.value)
+                      }></textarea>
+                  </div>
+                  <div>
+                    <label htmlFor="estimatedTime">Estimated Time</label>
+                    <input
+                      id="estimatedTime"
+                      name="estimatedTime"
+                      type="text"
+                      value={estimatedTime}
+                      onChange={(e) => setEstimatedTime(e.target.value)}
+                    />
+
+                    <label htmlFor="materialsNeeded">Materials Needed</label>
+                    <textarea
+                      id="materialsNeeded"
+                      name="materialsNeeded"
+                      value={materialsNeeded}
+                      onChange={(e) =>
+                        setMaterialsNeeded(e.target.value)
+                      }></textarea>
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="estimatedTime">Estimated Time</label>
-                  <input
-                    id="estimatedTime"
-                    name="estimatedTime"
-                    type="text"
-                    value={estimatedTime}
-                    onChange={(e) => setEstimatedTime(e.target.value)}
-                  />
-
-                  <label htmlFor="materialsNeeded">Materials Needed</label>
-                  <textarea
-                    id="materialsNeeded"
-                    name="materialsNeeded"
-                    value={materialsNeeded}
-                    onChange={(e) =>
-                      setMaterialsNeeded(e.target.value)
-                    }></textarea>
-                </div>
-              </div>
-            </React.Fragment>
-          )}
-        />
-      </div>
+              </React.Fragment>
+            )}
+          />
+        </div>
+      ) : (
+        <>{navigate('/forbidden')}</>
+      )}
     </main>
   );
 }

@@ -3,21 +3,18 @@
  * @param {object} component - Component to be rendered
  */
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Consumer } from './Context';
 
 const PrivateRoutes = () => {
+  const location = useLocation();
   return (
     <Consumer>
       {(context) =>
         context.authenticatedUser ? (
           <Outlet />
         ) : (
-          <Navigate
-            to={{
-              pathname: '/signin',
-            }}
-          />
+          <Navigate to={'/signin'} state={{ from: location }} replace />
         )
       }
     </Consumer>

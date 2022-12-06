@@ -1,12 +1,14 @@
 /* This component provides the "Sign In" screen by rendering a form that allows a user to sign in using their existing account information. The component also renders a "Sign In" button that when clicked signs in the user and a "Cancel" button that returns the user to the default route (i.e. the list of courses). */
 
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import Form from './Form';
 
 function UserSignIn(props) {
   const { context } = props;
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || { from: { pathname: '/' } };
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -26,7 +28,7 @@ function UserSignIn(props) {
             return ['Sign-in was unsuccessful'];
           });
         } else {
-          navigate('/');
+          navigate(from, { replace: true });
         }
       })
       .catch((err) => {

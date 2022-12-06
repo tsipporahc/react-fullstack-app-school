@@ -25,8 +25,11 @@ function CourseDetail({ context }) {
         setfirstName(data.User.firstName); // sets the value of firstName to be rendered in form
         setLastName(data.User.lastName); // sets the value of lastName to be rendered in form
       })
-      .catch((error) => console.log('Error fetching and parsing data.', error));
-  }, [id, context]);
+      .catch((error) => {
+        console.log('Error fetching and parsing data.', error);
+        navigate('/notfound');
+      });
+  }, [id, context, navigate]);
 
   /**
    * Deletes a course via context
@@ -45,6 +48,7 @@ function CourseDetail({ context }) {
       .then(navigate('/'))
       .catch((err) => {
         console.log(err, 'Error deleting course');
+        navigate('/error'); // returns 500 internal server error http status code
       });
   }
 

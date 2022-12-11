@@ -36,7 +36,7 @@ function UserSignUp(props) {
           setErrors(errors);
         } else {
           context.actions.signIn(emailAddress, password).then(() => {
-            navigate('/');
+            navigate('/', { replace: true });
           });
         }
       })
